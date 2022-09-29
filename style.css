@@ -16,7 +16,7 @@ body {
     width: 400px;
     height: 500px;
     border-color: black;
-    background-color: grey;
+    background-color: rgb(167, 167, 167);
     border: 5px solid black;
     border-radius: 20px;
     padding: 10px;
@@ -73,6 +73,7 @@ button {
     border: 2px solid black;
     border-radius: 5px;
     font-size: 40px;
+    cursor: pointer;
 }
 
 .clear-buttons {

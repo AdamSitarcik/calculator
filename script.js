@@ -2,6 +2,7 @@ let input = [];
 let inputArray = [];
 let operation = [];
 let resultValue = [];
+let proceedCalc = false;
 const operationArray = ['+', '-', '*', '/'];
 const buttons = document.querySelectorAll('button');
 const inputButtons = document.querySelectorAll('.input')
@@ -29,11 +30,10 @@ deleteBtn.addEventListener('click', () => {
 
 numbers.forEach(button => {
     button.addEventListener('click', () => {
-        if(operation.length == 0) {
-            if(inputArray.length != 0) {
-                input = [];
-                inputArray = [];
-            }
+        if(!proceedCalc){
+            input = [];
+            inputArray = [];
+            proceedCalc = true;
         }
         input.push(button.innerHTML);
         inputValues.textContent = input.join('');
@@ -43,6 +43,7 @@ numbers.forEach(button => {
 
 operations.forEach(button => {
     button.addEventListener('click', () => {
+        proceedCalc = true;
         if(operation.length == 0) {
             operation = button.innerHTML;
             input.push(button.innerHTML);
@@ -82,15 +83,14 @@ function divide(a, b) {
 }
 
 function evaluateInput() {
+    rounding_decimal = 4;
     inputArray = inputArray.split(operation);
-    resultValue = operate(operation, inputArray[0], inputArray[1]);
+    resultValue = Math.round(operate(operation, inputArray[0], inputArray[1]) * 10**rounding_decimal)/10**rounding_decimal;
     result.textContent = resultValue;
-    inputArray = [];
-    inputArray.push(resultValue);
     input = [];
     input.push(resultValue);
     operation = [];
-    // resultValue = [];
+    proceedCalc = false;
 }
 
 function operate(symbol, a, b) {

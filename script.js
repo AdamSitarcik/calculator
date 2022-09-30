@@ -3,6 +3,7 @@ let inputArray = [];
 let operation = [];
 let resultValue = [];
 let proceedCalc = false;
+let isDecimal = false;
 const operationArray = ['+', '-', '*', '/'];
 const buttons = document.querySelectorAll('button');
 const inputButtons = document.querySelectorAll('.input')
@@ -13,6 +14,7 @@ const deleteBtn = document.querySelector('#delete');
 const equal = document.querySelector('#equal');
 const numbers = document.querySelectorAll('.number');
 const operations = document.querySelectorAll('.operation');
+const decimalBtn = document.querySelector('#decimal');
 
 clear.addEventListener('click', () => {
     input = [];
@@ -28,12 +30,22 @@ deleteBtn.addEventListener('click', () => {
     result.textContent = '';
 });
 
+decimalBtn.addEventListener('click', () => {
+    if(!isDecimal) {
+        input.push(decimalBtn.innerHTML);
+        inputValues.textContent = input.join('');
+        inputArray = input.join('');
+    }
+    isDecimal = true;
+})
+
 numbers.forEach(button => {
     button.addEventListener('click', () => {
         if(!proceedCalc){
             input = [];
             inputArray = [];
             proceedCalc = true;
+            result.textContent = '';
         }
         input.push(button.innerHTML);
         inputValues.textContent = input.join('');
@@ -44,6 +56,7 @@ numbers.forEach(button => {
 operations.forEach(button => {
     button.addEventListener('click', () => {
         proceedCalc = true;
+        isDecimal = false;
         if(operation.length == 0) {
             operation = button.innerHTML;
             input.push(button.innerHTML);
@@ -91,6 +104,7 @@ function evaluateInput() {
     input.push(resultValue);
     operation = [];
     proceedCalc = false;
+    isDecimal = false;
 }
 
 function operate(symbol, a, b) {

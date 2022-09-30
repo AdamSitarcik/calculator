@@ -8,43 +8,52 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="body">
-        <div class="display-field">
-            <div id="input-value"></div>
-            <div id="breaking-line"></div>
-            <div id="result"></div>
-        </div>
-        <div class="buttons">
-            <div class="clear-buttons">
-                <button class="clearButton" id="clear">CLEAR</button>
-                <button class="clearButton" id="delete">DELETE</button>
+    <div class="main-content">
+        <h1 class="header">Calculator</h1>
+        <div class="body">
+            <div class="display-field">
+                <div id="input-value"></div>
+                <div id="breaking-line"></div>
+                <div id="result"></div>
             </div>
-            <div class="input-buttons">
-                <div class="number-buttons">
-                    <button class="input number" id="1">1</button>
-                    <button class="input number" id="2">2</button>
-                    <button class="input number" id="3">3</button>
-                    <button class="input number" id="4">4</button>
-                    <button class="input number" id="5">5</button>
-                    <button class="input number" id="6">6</button>
-                    <button class="input number" id="7">7</button>
-                    <button class="input number" id="8">8</button>
-                    <button class="input number" id="9">9</button>
-                    <button class="input" id="decimal">.</button>
-                    <button class="input number" id="0">0</button>
-                    <button class="output" id="equal">=</button>
+            <div class="buttons">
+                <div class="clear-buttons">
+                    <button data-key="46" class="clearButton" id="clear">AC</button>
+                    <button data-key="8" class="clearButton" id="delete">🠐</button>
                 </div>
-                <div class="operation-buttons">
-                    <button class="input operation" id="add">+</button>
-                    <button class="input operation" id="subtract">-</button>
-                    <button class="input operation" id="multiply">*</button>
-                    <button class="input operation" id="divide">/</button>
+                <div class="input-buttons">
+                    <div class="number-buttons">
+                        <button data-symbol="%" class="input operation" id="modulo">%</button>
+                        <button data-symbol="^" class="input operation" id="power">x<sup>y</sup></button>
+                        <button data-symbol="!" class="input operation" id="factorial">!</button>
+                        <button data-key="49" class="input number" id="1">1</button>
+                        <button data-key="50" class="input number" id="2">2</button>
+                        <button data-key="51" class="input number" id="3">3</button>
+                        <button data-key="52" class="input number" id="4">4</button>
+                        <button data-key="53" class="input number" id="5">5</button>
+                        <button data-key="54" class="input number" id="6">6</button>
+                        <button data-key="55" class="input number" id="7">7</button>
+                        <button data-key="56" class="input number" id="8">8</button>
+                        <button data-key="57" class="input number" id="9">9</button>
+                        <button data-symbol="." data-key="190" class="input" id="decimal">.</button>
+                        <button data-key="48" class="input number" id="0">0</button>
+                        <button data-symbol="-" class="input operation" id="negative">+/-</button>
+                    </div>
+                    <div class="operation-buttons">
+                        <button data-symbol="+" class="input operation" id="add">+</button>
+                        <button data-symbol="-" class="input operation" id="subtract">-</button>
+                        <button data-symbol="*" class="input operation" id="multiply">*</button>
+                        <button operation-symbol="/" class="input operation" id="divide">/</button>
+                        <button data-key="187" class="input output" id="equal">=</button>
+                    </div>
                 </div>
             </div>
-            <!-- <div>
-                <button id="test">TEST</button>
-            </div> -->
         </div>
+    </div>
+    <div class="footer">
+        <p>Adam Sitarčík © <script>document.write(new Date().getFullYear()) </script></p> 
+        <div style="width: 20px;"></div>
+        <a href="https://github.com/AdamSitarcik/calculator"><img class="git-logo" src="github-gray.svg" alt="GitHub logo"></a>
     </div>
 
     <script src="script.js"></script>

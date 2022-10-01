@@ -24,14 +24,18 @@ const subtractBtn = document.querySelector('#subtract');
 const multiplyBtn = document.querySelector('#multiply');
 const divideBtn = document.querySelector('#divide');
 
-buttons.forEach(button => {
+buttons.forEach(button => highlightBtn(button));
+
+
+function highlightBtn(button) {
     button.addEventListener('click', () => {
         button.classList.add('clicked');
     });
     button.addEventListener('transitionend', () => {
         button.classList.remove('clicked');
     });
-});
+}
+
 
 clear.addEventListener('click', () => {
     input = [];
@@ -39,6 +43,10 @@ clear.addEventListener('click', () => {
     operation = [];
     inputValues.textContent = '';
     result.textContent = '';
+});
+
+document.addEventListener('keydown', (event) =>{
+    document.querySelector(`[data-key="${event.key}"]`).click();
 });
 
 deleteBtn.addEventListener('click', () => {
@@ -62,6 +70,7 @@ negative.addEventListener('click', () => {
     if(operation == 0) {
         if(String(input)[0] != negative.dataset.symbol){
             input.unshift(negative.dataset.symbol)
+            proceedCalc = true;
         }
         else {
             let input_str = String(input);
@@ -70,7 +79,7 @@ negative.addEventListener('click', () => {
         }
     }
     else {
-        if(inputArray[inputArray.indexOf(operation,1)+1] != negative.dataset.symbol) {
+        if(inputArray[inputArray.indexOf(operation, 1)+1] != negative.dataset.symbol) {
             input.splice(input.indexOf(operation, 1)+1, 0, negative.dataset.symbol);
             }
         else {
@@ -79,7 +88,6 @@ negative.addEventListener('click', () => {
     }
     inputArray = input.join('');
     inputValues.textContent = input.join('');
-
 });
 
 numbers.forEach(button => {
@@ -93,8 +101,6 @@ numbers.forEach(button => {
         input.push(button.innerHTML);
         inputValues.textContent = input.join('');
         inputArray = input.join('');
-        
-        console.log(inputArray[0]);
     })
 });
 
@@ -187,3 +193,11 @@ function operate(symbol='', a, b) {
     if(symbol === powerBtn.dataset.symbol) return power(a, b);
     if(symbol === factorialBtn.dataset.symbol) return factorial(a, b);
 }
+
+const test = document.querySelector('#test');
+test.addEventListener('click', () => {
+   console.log('input=' + input); 
+   console.log('inputArray= ' + inputArray); 
+   console.log('operation= ' + operation); 
+   console.log(''); 
+});

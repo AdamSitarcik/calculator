@@ -26,16 +26,12 @@ const divideBtn = document.querySelector('#divide');
 
 buttons.forEach(button => highlightBtn(button));
 
-
-function highlightBtn(button) {
-    button.addEventListener('click', () => {
-        button.classList.add('clicked');
-    });
-    button.addEventListener('transitionend', () => {
-        button.classList.remove('clicked');
-    });
-}
-
+document.addEventListener('keydown', (event) =>{
+    if(event.key === 'Enter') equal.click();
+    if(document.querySelector(`[data-key="${event.key}"]`)) {
+        document.querySelector(`[data-key="${event.key}"]`).click();
+    }
+});
 
 clear.addEventListener('click', () => {
     input = [];
@@ -43,10 +39,6 @@ clear.addEventListener('click', () => {
     operation = [];
     inputValues.textContent = '';
     result.textContent = '';
-});
-
-document.addEventListener('keydown', (event) =>{
-    document.querySelector(`[data-key="${event.key}"]`).click();
 });
 
 deleteBtn.addEventListener('click', () => {
@@ -126,7 +118,6 @@ operations.forEach(button => {
     });
 });
 
-
 equal.addEventListener('click', evaluateInput);
 
 function sum(a, b) {
@@ -166,10 +157,30 @@ function factorial(a, b) {
     }
 }
 
+function operate(symbol='', a, b) {
+    if(symbol === moduloBtn.dataset.symbol) return modulo(a, b);
+    if(symbol === addBtn.dataset.symbol) return sum(a, b);
+    if(symbol === subtractBtn.dataset.symbol) return subtract(a, b);
+    if(symbol === multiplyBtn.dataset.symbol) return multiply(a, b);
+    if(symbol === divideBtn.dataset.symbol) return divide(a, b);
+    if(symbol === powerBtn.dataset.symbol) return power(a, b);
+    if(symbol === factorialBtn.dataset.symbol) return factorial(a, b);
+}
+
 function evaluateInput() {
     rounding_decimal = 4;
     if(operation != 0) {
-        inputArray = inputArray.split(operation);
+        if(operation === subtractBtn.dataset.symbol){
+            if(inputArray[0][0] !== negative.dataset.symbol) {
+                inputArray = splitCustom(inputArray, inputArray.indexOf(operation, 1));
+            }
+            else {
+                inputArray = splitCustom(inputArray, inputArray.indexOf(operation, 1));
+            }
+        }
+        else {
+            inputArray = splitCustom(inputArray, inputArray.indexOf(operation, 1));
+        }
         resultValue = Math.round(operate(operation, inputArray[0], inputArray[1]) * 10**rounding_decimal)/10**rounding_decimal;
     }
     else {
@@ -184,20 +195,16 @@ function evaluateInput() {
     isDecimal = false;
 }
 
-function operate(symbol='', a, b) {
-    if(symbol === moduloBtn.dataset.symbol) return modulo(a, b);
-    if(symbol === addBtn.dataset.symbol) return sum(a, b);
-    if(symbol === subtractBtn.dataset.symbol) return subtract(a, b);
-    if(symbol === multiplyBtn.dataset.symbol) return multiply(a, b);
-    if(symbol === divideBtn.dataset.symbol) return divide(a, b);
-    if(symbol === powerBtn.dataset.symbol) return power(a, b);
-    if(symbol === factorialBtn.dataset.symbol) return factorial(a, b);
+function splitCustom(str, index) {
+    const result = [str.slice(0, index), str.slice(index + 1)];
+    return result;
 }
 
-const test = document.querySelector('#test');
-test.addEventListener('click', () => {
-   console.log('input=' + input); 
-   console.log('inputArray= ' + inputArray); 
-   console.log('operation= ' + operation); 
-   console.log(''); 
-});
+function highlightBtn(button) {
+    button.addEventListener('click', () => {
+        button.classList.add('clicked');
+    });
+    button.addEventListener('transitionend', () => {
+        button.classList.remove('clicked');
+    });
+}

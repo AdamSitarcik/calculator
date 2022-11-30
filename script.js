@@ -27,7 +27,10 @@ const divideBtn = document.querySelector('#divide');
 buttons.forEach(button => highlightBtn(button));
 
 document.addEventListener('keydown', (event) =>{
-    if(event.key === 'Enter') equal.click();
+    if(event.key === 'Enter') {
+        equal.click();
+    }
+    
     if(document.querySelector(`[data-key="${event.key}"]`)) {
         document.querySelector(`[data-key="${event.key}"]`).click();
     }
@@ -56,7 +59,7 @@ decimalBtn.addEventListener('click', () => {
         inputArray = input.join('');
     }
     isDecimal = true;
-})
+});
 
 negative.addEventListener('click', () => {
     if(operation == 0) {

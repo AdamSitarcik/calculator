@@ -152,6 +152,10 @@ button {
     height: 100%;
 }
 
+.number {
+    background-color: rgb(225, 225, 225);
+}
+
 .operation-buttons {
     display: flex;
     flex-direction: column;

@@ -34,7 +34,12 @@ document.addEventListener('keydown', (event) =>{
     
     if(document.querySelector(`[data-key="${event.key}"]`)) {
         document.querySelector(`[data-key="${event.key}"]`).click();
+        event.target.blur();
     }
+});
+
+document.addEventListener('click', (event) => {
+    event.target.blur();
 });
 
 clear.addEventListener('click', () => {

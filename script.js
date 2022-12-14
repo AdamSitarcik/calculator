@@ -26,6 +26,7 @@ const divideBtn = document.querySelector('#divide');
 
 buttons.forEach(button => highlightBtn(button));
 
+
 document.addEventListener('keydown', (event) =>{
     if(event.key === 'Enter') {
         equal.click();
@@ -62,7 +63,7 @@ decimalBtn.addEventListener('click', () => {
 });
 
 negative.addEventListener('click', () => {
-    if(operation == 0) {
+    if(operation.length == 0) {
         if(String(input)[0] != negative.dataset.symbol){
             input.unshift(negative.dataset.symbol)
             proceedCalc = true;

@@ -26,7 +26,6 @@ const divideBtn = document.querySelector('#divide');
 
 buttons.forEach(button => highlightBtn(button));
 
-
 document.addEventListener('keydown', (event) =>{
     if(event.key === 'Enter') {
         equal.click();
@@ -34,7 +33,6 @@ document.addEventListener('keydown', (event) =>{
     
     if(document.querySelector(`[data-key="${event.key}"]`)) {
         document.querySelector(`[data-key="${event.key}"]`).click();
-        event.target.blur();
     }
 });
 
